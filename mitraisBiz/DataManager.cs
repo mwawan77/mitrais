@@ -29,25 +29,24 @@ namespace mitraisBiz
                         User UserObj = UserData.ToObject<User>();
 
                         // Check Mobile Number
-                        IList<User> UserList = session.CreateCriteria<User>()
+                        IList<User> MobileCheck = session.CreateCriteria<User>()
                            .Add(Restrictions.Eq("MobileNumber", UserObj.MobileNumber))
                            .List<User>();
 
-                        if (UserList.Count > 0)
+                        if (MobileCheck.Count > 0)
                         {
                             throw new ApplicationException("Mobile Number exist on database");
                         }
 
                         // Check Email
-                        UserList = session.CreateCriteria<User>()
+                        IList<User> EmailCheck = session.CreateCriteria<User>()
                            .Add(Restrictions.Eq("Email", UserObj.Email))
                            .List<User>();
 
-                        if (UserList.Count > 0)
+                        if (EmailCheck.Count > 0)
                         {
                             throw new ApplicationException("Email exist on database");
                         }
-
 
                         User objUser = new User
                         {
@@ -59,9 +58,9 @@ namespace mitraisBiz
                             Email = UserObj.Email,
                             Password = UserObj.Password,
                             CreatedDate = DateTime.Now,
-                            CreatedBy = UserObj.CreatedBy,
+                            CreatedBy = "Wawan",
                             UpdatedDate = DateTime.Now,
-                            UpdatedBy = UserObj.UpdatedBy
+                            UpdatedBy = "Wawan"
                         };
 
                         session.Save(objUser);
@@ -69,6 +68,53 @@ namespace mitraisBiz
 
                         return objUser.Id;
 
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList<User> UserList()
+        {
+            try
+            {
+                using (var session = NHibernateHelper.OpenSession())
+                {
+                    using (var transaction = session.BeginTransaction())
+                    {
+                        //return session.Query<User>().ToList();
+                        IList<User> EmailCheck = session.CreateCriteria<User>()
+                           .Add(Restrictions.Eq("Email", "mwawan@yahoo.com"))
+                           .List<User>();
+
+                        return EmailCheck;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList<User> UserDetail(int Id)
+        {
+            try
+            {
+                using (var session = NHibernateHelper.OpenSession())
+                {
+                    using (var transaction = session.BeginTransaction())
+                    {
+                        IList<User> UserList = session.CreateCriteria<User>()
+                           .Add(Restrictions.Eq("Id", Id))
+                           .List<User>();
+
+                        return UserList;
                     }
                 }
 

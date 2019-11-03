@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) { //wait for the document to load
     function populateDate() {
         var monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         for (var month = 0; month < monthName.length; month++) {
-            $("#reg_month").append('<option value="' + month + '">' + monthName[month] + '</option>');
+            $("#reg_month").append('<option value="' + (month+1) + '">' + monthName[month] + '</option>');
         }
         for (var date = 1; date <= 31; date++) {
             $("#reg_date").append('<option value="' + date + '">' + date + '</option>');
@@ -64,7 +64,6 @@ jQuery(document).ready(function ($) { //wait for the document to load
         if ($("#registration_form").validationEngine('validate')) {
             // Check Date 
             var checkDate = $("#reg_month").val() + $("#reg_date").val() + $("#reg_year").val();
-            console.log(checkDate);
             if (checkDate != "") {
                 if ($("#reg_month").val() == "") {
                     $('#reg_month').validationEngine('showPrompt', '* Month required', 'error', 'topRight', true);
@@ -78,9 +77,56 @@ jQuery(document).ready(function ($) { //wait for the document to load
                     $('#reg_year').validationEngine('showPrompt', '* Year required', 'error', 'topRight', true);
                     return;
                 }
+                checkDate = $("#reg_year").val() + "-" + $("#reg_month").val() + "-" + $("#reg_date").val();
             }
+
+            if (checkDate == "") {
+                checkDate = "1900-01-01";
+            }
+
+            var reg_data = {
+                "MobileNumber": $("#reg_mobile_number").val(),
+                "FirstName": $("#reg_first_name").val(),
+                "LastName": $("#reg_last_name").val(),
+                "DateOfBirth": checkDate,
+                "Sex": $("input[name='reg_sex']:checked").val(),
+                "Email": $("#reg_email").val(),
+                "Password": "",
+                "CreatedDate": "",
+                "CreatedBy": "",
+                "UpdatedDate": "",
+                "UpdatedBy": ""
+            };
+
             $(".reg_form").block({
                 message: null
+            });
+
+            $.ajax({
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                url: "api/user",
+                data: reg_data,
+                success: function (data) {
+                    var json = data;
+                    if (json.status == "error") {
+                        $(".reg_form").unblock();
+                        if (json.data == "Mobile Number exist on database") {
+                            $('#reg_mobile_number').validationEngine('showPrompt', '* ' + json.data, 'error', 'topRight', true);
+                            return;
+                        }
+                        if (json.data == "Email exist on database") {
+                            $('#reg_email').validationEngine('showPrompt', '* ' + json.data, 'error', 'topRight', true);
+                            return;
+                        }
+                    } else {
+                        $(".login_form").show();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
             });
 
         }

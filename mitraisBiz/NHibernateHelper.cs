@@ -11,7 +11,7 @@ using mitraisBiz.Entities;
 
 namespace mitraisBiz
 {
-    class NHibernateHelper
+    public class NHibernateHelper
     {
         private static string _Connection = "";
         public string Connection
