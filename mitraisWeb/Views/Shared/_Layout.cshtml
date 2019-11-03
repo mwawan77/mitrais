@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Mitrais Web</title>
+    <link rel='shortcut icon' type='image/x-icon' href='@Url.Content("~/")favicon.ico' />
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/validationEngine.jquery.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="@ViewBag.CssBody">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -16,27 +18,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("Index", "Home")' class="navbar-brand">
+                    <img class="logo" src='@Url.Content("~/Content/images/mitrais-logo.png")' />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Index", "login")</li>
+                    <li>@Html.ActionLink("Registration", "Index", "registration")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - By Mukhamad Kurniawan YH</p>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.blockUI.js")
+    @Scripts.Render("~/Scripts/jquery.validationEngine.min.js")
+    @Scripts.Render("~/Scripts/jquery.validationEngine-en.js")
+    @Scripts.Render("~/Scripts/main.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

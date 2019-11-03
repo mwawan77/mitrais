@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+    ViewBag.CssBody = "registration";
+}
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 reg_form">
+        <h2>@ViewBag.Title</h2>
+        <form id="registration_form">
+            <div class="form-group">
+                <input type="text" class="form-control validate[required,funcCall[checkIndoPhone]]" id="reg_mobile_number" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control validate[required]" id="reg_first_name" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control validate[required]" id="reg_last_name" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label class="dateOfBirth" for="dateOfBirth">Date of Birth</label>
+                <select class="form-control date" id="reg_month">
+                    <option value="">Month</option>
+                </select>
+                <select class="form-control date" id="reg_date">
+                    <option value="">Date</option>
+                </select>
+                <select class="form-control date" id="reg_year">
+                    <option value="">Year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="reg_sex" id="reg_sex_male" value="Male"> Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="reg_sex" id="reg_sex_female" value="Female"> Female
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control validate[required,custom[email]]" id="reg_email" placeholder="Email">
+            </div>
+            <button type="button" class="btn btn-default" id="btnRegister">Register</button>
+        </form>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 login_form">
+            <button type="button" class="btn btn-default">Login</button>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+
+
+
+

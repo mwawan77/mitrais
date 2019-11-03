@@ -1,6 +1,5 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -20,5 +19,80 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 60%;*/
+}
+
+.navbar-inverse {
+    background-color: #330a5d;
+    border-color: #330a5d;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-brand .logo {
+    width: 40%;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: right;
+    }
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #9C27B0;
+    color: #ffffff;
+}
+
+.footer-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+footer .container {
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+/* Registration */
+.date {
+    width:20%;
+    display:inline-block;
+}
+
+.dateOfBirth {
+    display:block;
+    width:100%;
+}
+
+.registration .btn-default,
+.login .btn-default {
+    width: 100%;
+    background-color: #9C27B0;
+    color: #ffffff;
+}
+
+.reg_form {
+    padding-bottom:20px;
+}
+
+.login_form {
+    padding-top: 50px;
+}
+
+div.blockOverlay {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    -moz-opacity: .60;
+    opacity: .60;
+    background-color: ghostwhite;
 }
