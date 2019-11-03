@@ -40,5 +40,6 @@ Build by C# Library on Visual Studio 2017 (mitraisBiz folder)
 ## Setup Demo
 1. Attach mitraisDb.mdf to MsSQL Server 2012
 2. Modify Connection String on Web.config
-3. Open the Solution on Visual Studio 2017 than running it OR
-4. Create an application on IIS that pointing to mitraisWeb folder
+3. Open the Solution on Visual Studio 2017 than Rebuild Solution first
+4. Running it on Visual Studio 2017 OR
+5. Create an application on IIS that pointing to mitraisWeb folder
